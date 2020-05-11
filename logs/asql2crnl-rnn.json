@@ -1,0 +1,52 @@
+[2020-05-10 23:52:29,225 INFO] Loading dataset from data_asql2nl/asql2nl.train.0.pt
+[2020-05-10 23:52:30,347 INFO]  * src vocab size = 10457
+[2020-05-10 23:52:30,352 INFO]  * tgt vocab size = 6059
+[2020-05-10 23:52:30,353 INFO] Building model...
+[2020-05-10 23:52:30,772 INFO] number of examples: 74511
+[2020-05-10 23:52:39,629 INFO] Loading checkpoint from /mnt/ssda/kevinq/OpenNMT-py/models/asql2nl-rnn/asql2nl-rnn-model_step_100000.pt
+[2020-05-10 23:52:39,733 INFO] Loading vocab from checkpoint at /mnt/ssda/kevinq/OpenNMT-py/models/asql2nl-rnn/asql2nl-rnn-model_step_100000.pt.
+[2020-05-10 23:53:39,720 INFO] NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(10457, 500, padding_idx=1)
+        )
+      )
+    )
+    (rnn): LSTM(500, 500, num_layers=2, dropout=0.3)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(6059, 500, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3, inplace=False)
+    (rnn): StackedLSTM(
+      (dropout): Dropout(p=0.3, inplace=False)
+      (layers): ModuleList(
+        (0): LSTMCell(1000, 500)
+        (1): LSTMCell(500, 500)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_in): Linear(in_features=500, out_features=500, bias=False)
+      (linear_out): Linear(in_features=1000, out_features=500, bias=False)
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=500, out_features=6059, bias=True)
+    (1): Cast()
+    (2): LogSoftmax()
+  )
+)
+[2020-05-10 23:52:39,721 INFO] encoder: 9236500
+[2020-05-10 23:52:39,721 INFO] decoder: 11823059
+[2020-05-10 23:52:39,721 INFO] * number of parameters: 21059559
+[2020-05-10 23:54:15,137 INFO] Loading dataset from data_asql2nl/asql2nl.valid.0.pt
+[2020-05-10 23:54:15,260 INFO] number of examples: 9672
+[2020-05-10 23:54:23,228 INFO] Validation perplexity: 13.564
+[2020-05-10 23:54:23,228 INFO] Validation accuracy: 58.2378

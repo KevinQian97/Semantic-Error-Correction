@@ -1,0 +1,14 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 fairseq-train data-bin/sw.nl.crnl_sql.bpe16k/ \
+    --max-epoch 50 \
+    --ddp-backend=no_c10d \
+    --task multilingual_translation --lang-pairs nl-crnl,nl-sql \
+    --arch multilingual_transformer_sw_nl_crnl \
+    --share-encoders --share-encoder-input-output-embed \
+    --optimizer adam --adam-betas '(0.9, 0.98)' \
+    --lr 0.0005 --lr-scheduler inverse_sqrt --min-lr '1e-09' \
+    --warmup-updates 4000 --warmup-init-lr '1e-07' \
+    --label-smoothing 0.1 --criterion label_smoothed_cross_entropy \
+    --dropout 0.3 --weight-decay 0.0001 \
+    --save-dir checkpoints/multilingual_transformer \
+    --max-tokens 4000 \
+    --update-freq 8

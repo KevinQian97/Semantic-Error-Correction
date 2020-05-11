@@ -1,0 +1,52 @@
+[2020-05-10 23:48:51,990 INFO] Loading dataset from data_asql2nl/asql2nl.train.0.pt
+[2020-05-10 23:48:52,442 INFO]  * src vocab size = 10457
+[2020-05-10 23:48:52,443 INFO]  * tgt vocab size = 6059
+[2020-05-10 23:48:52,444 INFO] Building model...
+[2020-05-10 23:48:54,108 INFO] number of examples: 74511
+[2020-05-10 23:48:59,629 INFO] Loading checkpoint from /mnt/ssda/kevinq/OpenNMT-py/models/asql2nl-brnn/asql2nl-brnn-model_step_100000.pt
+[2020-05-10 23:48:59,733 INFO] Loading vocab from checkpoint at /mnt/ssda/kevinq/OpenNMT-py/models/asql2nl-brnn/asql2nl-brnn-model_step_100000.pt.
+[2020-05-10 23:49:01,779 INFO] NMTModel(
+(encoder): RNNEncoder(
+(embeddings): Embeddings(
+  (make_embedding): Sequential(
+    (emb_luts): Elementwise(
+      (0): Embedding(10457, 500, padding_idx=1)
+    )
+  )
+)
+(rnn): LSTM(500, 250, num_layers=2, dropout=0.3, bidirectional=True)
+)
+(decoder): InputFeedRNNDecoder(
+(embeddings): Embeddings(
+  (make_embedding): Sequential(
+    (emb_luts): Elementwise(
+      (0): Embedding(6059, 500, padding_idx=1)
+    )
+  )
+)
+(dropout): Dropout(p=0.3, inplace=False)
+(rnn): StackedLSTM(
+  (dropout): Dropout(p=0.3, inplace=False)
+  (layers): ModuleList(
+    (0): LSTMCell(1000, 500)
+    (1): LSTMCell(500, 500)
+  )
+)
+(attn): GlobalAttention(
+  (linear_in): Linear(in_features=500, out_features=500, bias=False)
+  (linear_out): Linear(in_features=1000, out_features=500, bias=False)
+)
+)
+(generator): Sequential(
+(0): Linear(in_features=500, out_features=6059, bias=True)
+(1): Cast()
+(2): LogSoftmax()
+)
+)
+[2020-05-10 23:49:01,783 INFO] encoder: 8236500
+[2020-05-10 23:49:01,784 INFO] decoder: 11823059
+[2020-05-10 23:49:01,784 INFO] * number of parameters: 20059559
+[2020-05-10 23:51:15,137 INFO] Loading dataset from data_asql2nl/asql2nl.valid.0.pt
+[2020-05-10 23:51:15,260 INFO] number of examples: 9672
+[2020-05-10 23:51:23,228 INFO] Validation perplexity: 11.7482
+[2020-05-10 23:51:23,228 INFO] Validation accuracy: 59.6254
